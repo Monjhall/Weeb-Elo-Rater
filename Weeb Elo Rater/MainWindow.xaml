@@ -1,0 +1,74 @@
+﻿<Window x:Class="Weeb_Elo_Rater.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Weeb_Elo_Rater"
+        mc:Ignorable="d"
+        Title="Weeb Elo Rater" Height="450" Width="800">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="5">
+            <Grid Grid.Column="0" Background="Green">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="LobbyTitle" Text="Ranking Not Started" Margin="5" FontSize="24" VerticalAlignment="Center"/>
+
+                <ListBox x:Name="AnimeListBox" Grid.Row="1" Margin="5">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image  Source="{Binding ImageLink}" MaxWidth="75"/>
+                                <TextBlock Text="{Binding Title}" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Stretch"/>
+                                <TextBlock Text="{Binding Elo}" Grid.Column="2"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="PreviousLobbyButton" Grid.Column="0" Content="Previous Ranking Lobby" Margin="5" IsEnabled="False" Click="PreviousLobbyButtonClick"/>
+                    <Button x:Name="NextLobbyButton" Grid.Column="1" Content="Next Ranking Lobby" Margin="5" IsEnabled="False" Click="NextLobbyButtonClick"/>
+                    <Button x:Name="NextRoundButton" Grid.Column="2" Content="Next Round" Margin="5" IsEnabled="False" Click="NextRoundButtonClick"/>
+
+                </Grid>                
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="5">
+            <Grid Grid.Column="0" Background="Blue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Name="ListInformationBlock" Background="Gray" Text="List Information:" FontSize="16"/>
+                <Button Name="LoadButton" Grid.Row="1" Content="Load MAL XML" Margin="5" Click="LoadButtonClick"/>
+                <Button Name="StartStopButton" Grid.Row="2" Content="Start Ranking Anime" IsEnabled="False" Margin="5" Click="StartStopButtonClick"/>
+                
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
